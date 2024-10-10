@@ -43,8 +43,8 @@ jobs:
 
       - name: Run Listing
         run: |
-          # Search for the folder with the corresponding listing number
-          listing_folder=$(find . -type d -name "listing_${{ github.event.inputs.listing }}" -print -quit)
+          # Search for the folder with the corresponding listing number in 'gRPC-Service-Comunication'
+          listing_folder=$(find ./gRPC-Service-Comunication -type d -name "listing_${{ github.event.inputs.listing }}" -print -quit)
 
           if [ -z "$listing_folder" ]; then
             echo "Error: No listing found for the specified number: ${{ github.event.inputs.listing }}"
