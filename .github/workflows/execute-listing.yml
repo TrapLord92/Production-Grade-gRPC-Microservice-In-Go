@@ -41,6 +41,11 @@ jobs:
           path: ${{ steps.go-cache-paths.outputs.go-build }}
           key: ${{ runner.os }}-go-build-${{ hashFiles('**/go.sum') }}
 
+      - name: List Directory Contents (Debugging)
+        run: |
+          echo "Listing contents of gRPC-Service-Comunication folder:"
+          ls -al ./gRPC-Service-Comunication
+
       - name: Run Listing
         run: |
           # Search for the folder with the corresponding listing number in 'gRPC-Service-Comunication'
