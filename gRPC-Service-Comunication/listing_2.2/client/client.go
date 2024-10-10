@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"log"
+	"time"
 
 	payment "listing_2.2"
 
@@ -20,7 +21,9 @@ func main() {
 	defer conn.Close()
 
 	paymentClient := payment.NewPaymentServiceClient(conn)
-	ctx := context.Background()
+	ctx, cancel := context.WithTimeout(context.Background(),
+		10*time.Second)
+	defer cancel()
 	_, err = paymentClient.Create(ctx, &payment.CreatePaymentRequest{Price: 23})
 	if err != nil {
 		log.Println("Don't worry, we don't expect to see it is working.")
